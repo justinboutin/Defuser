@@ -41,7 +41,8 @@ void Bomb::defuse() {
 }
 
 void Bomb::defused() {
-	cout << "Defused!";
+	cout << "Defused!" << endl;
+	wires.clear();
 }
 
 void Bomb::blowUp() {
@@ -88,21 +89,73 @@ void Bomb::firstRule(char wire) {
 
 void Bomb::secondRule(char wire) {
 	if (lastWire == 'W') {
-		if (wire == 'B' || wire == 'R' || wire == 'G') {
+		if (wire == 'R' || wire == 'O' || wire == 'G') {
 			blowUp();
 		}
 		else {
 			cutWireHandler(wire);
+			firstWire = 'W';
+			thirdRule(chooseWire());
 		}
 	}
-
-	if (lastWire == 'R') {
+	else if (lastWire == 'R') {
 		if (wire == 'W' || wire == 'O' || wire == 'G') {
 			blowUp();
 		}
 		else {
 			cutWireHandler(wire);
+			firstWire = 'R';
+			thirdRule(chooseWire());
 		}
+	}
+}
+
+void Bomb::thirdRule(char wire) {
+	if (firstWire == lastWire) {
+		if (wire != 'B') {
+			blowUp();
+		}
+		else {
+			cutWireHandler(wire);
+			fourthRule(chooseWire());
+		}
+	}
+	else if (firstWire != lastWire) {
+		if (wire != 'O') {
+			blowUp();
+		}
+		else {
+			cutWireHandler(wire);
+			fourthRule(chooseWire());
+		}
+	}
+}
+
+void Bomb::fourthRule(char wire) {
+	if (lastWire == 'B') {
+		if (wire != 'G') {
+			blowUp();
+		}
+		else {
+			cutWireHandler(wire);
+			if (chooseWire() != 'O') {
+				blowUp();
+			}
+			else {
+				defused();
+			}
+		}
+	}
+	else if (lastWire == 'O') {
+		if (wire != 'G') {
+			blowUp();
+		}
+		else {
+			defused();
+		}
+	}
+	else {
+		blowUp();
 	}
 }
 

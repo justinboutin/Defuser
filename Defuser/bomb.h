@@ -13,6 +13,7 @@ public:
 	// Data Members
 	vector<string> wires;
 	char lastWire;
+	char firstWire;
 
 	// Member Functions
 	void initBomb(string bombFile);
@@ -24,6 +25,8 @@ public:
 	char chooseWire();
 	void firstRule(char wire);
 	void secondRule(char wire);
+	void thirdRule(char wire);
+	void fourthRule(char wire);
 	void cutWireHandler(char wire);
 	bool cutWire(string wire);
 };
