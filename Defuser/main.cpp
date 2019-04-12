@@ -15,6 +15,7 @@ int main(int argc, char** argv)
 	while (keepPlaying == true) {
 		bomb.promptFile();
 		bomb.defuse();
+		// bomb.keepPlaying();
 		cout << "Keep Playing? (y / n): ";
 		cin >> response;
 		if (response == 'n') {

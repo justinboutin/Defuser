@@ -14,6 +14,7 @@ public:
 	vector<string> wires;
 	char lastWire;
 	char firstWire;
+	bool exploded = false;
 
 	// Member Functions
 	void initBomb(string bombFile);
@@ -27,8 +28,10 @@ public:
 	void secondRule(char wire);
 	void thirdRule(char wire);
 	void fourthRule(char wire);
+	void fifthRule(char wire);
 	void cutWireHandler(char wire);
 	bool cutWire(string wire);
+	bool keepPlaying(istream& input);
 };
 
 #endif

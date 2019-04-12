@@ -46,6 +46,7 @@ void Bomb::defused() {
 }
 
 void Bomb::blowUp() {
+	exploded = true;
 	cout << endl << "Boom!" << endl;
 	wires.clear();
 }
@@ -138,12 +139,7 @@ void Bomb::fourthRule(char wire) {
 		}
 		else {
 			cutWireHandler(wire);
-			if (chooseWire() != 'O') {
-				blowUp();
-			}
-			else {
-				defused();
-			}
+			fifthRule(chooseWire());
 		}
 	}
 	else if (lastWire == 'O') {
@@ -154,8 +150,14 @@ void Bomb::fourthRule(char wire) {
 			defused();
 		}
 	}
-	else {
+}
+
+void Bomb::fifthRule(char wire) {
+	if (wire != 'O') {
 		blowUp();
+	}
+	else {
+		defused();
 	}
 }
 
@@ -216,4 +218,17 @@ bool Bomb::cutWire(string wire) {
 		cout << "Wire doesn't exist!";
 		return false;
 	}
+}
+
+bool Bomb::keepPlaying(istream& input) {
+	/*
+	Will be something like this:
+
+	int value;
+    std::cout << "Enter a number: ";
+    input >> value;
+    return value;
+	
+	*/
+	return false;
 }
