@@ -1,4 +1,6 @@
 # Defuser
+This project was created for my Software Methodologies class to practice Peer-Programming.
+
 A simple c++ class that allows the user to attempt to diffuse a bomb based off some simple rules.
 
 RULES
